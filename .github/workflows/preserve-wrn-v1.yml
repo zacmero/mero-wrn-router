@@ -1,9 +1,7 @@
 name: Preserve official WRN 240 v1 firmware
 
+# Initial archival run completed successfully. No schedule or push trigger.
 on:
-  push:
-    branches: [main]
-    paths: [.github/workflows/preserve-wrn-v1.yml]
   workflow_dispatch:
 
 permissions:
@@ -24,11 +22,11 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-      - name: Download original vendor ZIP and preserve exact extracted bytes
+      - name: Verify preserved archive or acquire missing original vendor ZIP
         run: python3 tools/archive_vendor_firmware.py
       - name: Verify all archived payload checksums
         run: sha256sum --check firmware/wrn240-v1/SHA256SUMS
-      - name: Commit firmware bytes and provenance to main
+      - name: Commit firmware bytes and provenance to main if newly acquired
         shell: bash
         run: |
           set -euo pipefail
