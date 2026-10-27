@@ -1,0 +1,51 @@
+{
+  "device_family": "Intelbras WRN 240",
+  "manufacturer_target_hardware_revision": "v1",
+  "source_index_url": "https://www.intelbras.com/pt-br/ajuda-download/download/roteador-wireless-flexivel-wrn-240",
+  "source_index_label": "WRN 240 v1 - Firmware versao 1.0.2",
+  "source_index_displayed_date": "2018-12-21",
+  "source_download_url": "https://backend.intelbras.com/sites/default/files/integration/firmware_wrn240_v1.0.0_2014-10-24.zip",
+  "resolved_download_url": "https://backend.intelbras.com/sites/default/files/integration/firmware_wrn240_v1.0.0_2014-10-24.zip",
+  "retrieved_at_utc": "2026-10-27T03:22:12.241140+00:00",
+  "response_headers": {
+    "Content-Type": "application/zip",
+    "Content-Length": "2881621",
+    "Last-Modified": "Fri, 21 Dec 2018 03:25:33 GMT",
+    "ETag": "\"2bf855-57d7fccbfe540\""
+  },
+  "archive": {
+    "repository_path": "firmware/wrn240-v1/firmware_wrn240_v1.0.0_2014-10-24.zip",
+    "bytes": 2881621,
+    "sha256": "351a4f70430274ab58418eb56ee26375f8e9a4af47c560cd1a2533b5070f2a83",
+    "git_blob_sha1": "888c851fe372fed82a3b52b2dcce9abadf0482c1"
+  },
+  "members": [
+    {
+      "original_zip_member": "Firmware_WRN240_v1.0.0_2014-10-24/wrn240_1_0_2(111122).bin",
+      "repository_path": "firmware/wrn240-v1/extracted/Firmware_WRN240_v1.0.0_2014-10-24/wrn240_1_0_2(111122).bin",
+      "zip_timestamp_unspecified_timezone": [
+        2011,
+        11,
+        22,
+        18,
+        11,
+        54
+      ],
+      "crc32_hex": "fa25e781",
+      "first_64_bytes_hex": "0100000054502d4c494e4b20546563686e6f6c6f67696573000000007665722e20312e3000000000000000000000000000000000000000000000000000000000",
+      "bytes": 3932160,
+      "sha256": "44449e24b648605bfd72366c1d0e8c1d4b89f088a3fe4b4abd2c4e29f7a9eb81",
+      "git_blob_sha1": "02daf08f1bd245938756d99fb2fb283bb384f256"
+    }
+  ],
+  "zip_crc_validation": "passed",
+  "version_caution": "Official index says 1.0.2 but original ZIP filename says v1.0.0. Both preserved verbatim; internal build and installed device version must be inspected separately.",
+  "limitations": [
+    "SHA-256 is computed from received bytes; no independent manufacturer checksum or signature was located.",
+    "HTTPS provenance and CRC/checksums do not establish safe-to-flash compatibility or authenticity by independent signature.",
+    "Vendor update package is not a full backup of the owner's flash, bootloader, configuration or calibration.",
+    "Downloaded content was not executed, emulated, modified or flashed.",
+    "Vendor copyright and any original licenses remain in force; archiving does not relicense the firmware."
+  ],
+  "github_run_id": "40443767071"
+}
