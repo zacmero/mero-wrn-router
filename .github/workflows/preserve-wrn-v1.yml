@@ -1,0 +1,51 @@
+name: Preserve official WRN 240 v1 firmware
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/preserve-wrn-v1.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wrn-v1-preservation
+  cancel-in-progress: false
+
+jobs:
+  preserve:
+    if: github.repository == 'zacmero/mero-wrn-router'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Download original vendor ZIP and preserve exact extracted bytes
+        run: python3 tools/archive_vendor_firmware.py
+      - name: Verify all archived payload checksums
+        run: sha256sum --check firmware/wrn240-v1/SHA256SUMS
+      - name: Commit firmware bytes and provenance to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- firmware/wrn240-v1
+          if git diff --cached --quiet; then
+            echo 'Verified archive already present; nothing to commit.'
+            exit 0
+          fi
+          git commit -m 'archive: preserve original Intelbras WRN 240 v1 firmware and SHA-256 manifest'
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo 'Unable to publish preserved firmware commit' >&2
+          exit 1
